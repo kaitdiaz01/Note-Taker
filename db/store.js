@@ -22,11 +22,18 @@ class Store {
     }
     // get the notes
     getNotes() {
-
+        
     }
     // add some notes
     addNotes() {
-        
+        const {title, text} = note;
+        const newNote = {
+            title,
+            text,
+            id: uuidv1(),
+        };
+        // somehow add to db now
+
     }
     // delete notes for bonus
 }
