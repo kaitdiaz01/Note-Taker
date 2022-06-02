@@ -16,6 +16,18 @@ router.get("/notes", (req, res) => {
   readFromFile("./db/db.json").then((data) => res.json(JSON.parse(data)));
 });
 
+router.get('/notes/:id', (req, res) => {
+  const noteId = req.params.id;
+  readFromFile('./db/db.json')
+    .then((data) => JSON.parse(data))
+    .then((json) => {
+      const result = json.filter((note) => note.id === noteId);
+      return result.length > 0
+        ? res.json(result)
+        : res.json('No note with that ID');
+    });
+});
+
 router.post("/notes", (req, res) => {
   const { title, text, id } = req.body;
   const newNote = {
